@@ -49,11 +49,23 @@
         align-items: center;
     }
 
-    .about-cards > div {
+    .card {
         padding: 0.5rem;
         margin: 0.5rem;
         border-style: solid;
-        width: 90%;
+        width: 60%;
+        border-radius: 20px;
+
+        transition: 
+            width 0.2s ease,
+            padding 0.2s ease,
+            border-color 0.2s ease
+    }
+
+    .card:hover {
+        border-color: blue;
+        width: 65%;
+        padding: 1rem;
     }
 
     .card > * {
