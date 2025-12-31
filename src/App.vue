@@ -20,6 +20,8 @@
 <style scoped>
 div {
   min-height: 100vh;
-  padding: 4rem;
+}
+body {
+  margin: 0 auto;
 }
 </style>

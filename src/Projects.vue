@@ -6,4 +6,7 @@
 </template>
 
 <style scoped>
+    div {
+        background-color: lightpink;
+    }
 </style>

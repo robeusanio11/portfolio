@@ -20,7 +20,8 @@
             </div>
         </div>
         <div class="about-info">
-            
+            <h2>About Me</h2>
+            <p>My name is Rob and this is about me.</p>
         </div>
     </div>
 </template>
@@ -31,19 +32,21 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        background-color: lightblue
     }
 
     .about-container > div {
         border-style: solid;
         padding: 1rem;
         margin: 1rem;
+        width: 100%;
     }
 
     .about-cards {
         display: flex;
         flex-direction: column;
-        /* justify-content: center;
-        align-items: center; */
+        align-items: center;
     }
 
     .about-cards > div {
@@ -61,6 +64,7 @@
         width: 25rem;
         height: 25rem;
         margin: 1rem;
+        border-style: solid;
     }
 
 </style>
