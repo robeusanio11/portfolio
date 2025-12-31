@@ -18,10 +18,15 @@
 </template>
 
 <style scoped>
-div {
-  min-height: 100vh;
-}
-body {
-  margin: 0 auto;
-}
+  div {
+    min-height: 100vh;
+  }
+
+  header > * {
+    border-bottom: 1px solid black;
+  }
+
+  main > * {
+    border-bottom: 1px solid black;
+  }
 </style>

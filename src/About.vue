@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="about-info">
-            <h2>About Me</h2>
+            <h2>About Me (about, education, professional exp)</h2>
             <p>My name is Rob and this is about me.</p>
         </div>
     </div>

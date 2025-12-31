@@ -26,7 +26,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        border-style: solid;
+        border-bottom: 2px solid black;
         height: 5rem;
         margin: 0 auto;
         background-color: lightgray;
