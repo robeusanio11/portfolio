@@ -1,8 +1,8 @@
 <script setup>
-  import Navbar from './Navbar.vue'
-  import About from './About.vue'
-  import Projects from './Projects.vue'
-  import Contact from './Contact.vue'
+  import Navbar from './components/Navbar.vue'
+  import Profile from './components/Profile.vue'
+  import Projects from './components/Projects.vue'
+  import Contact from './components/Contact.vue'
 
 </script>
 
@@ -11,7 +11,7 @@
     <Navbar className="navbar"/>
   </header>
   <main>
-    <About id="about" />
+    <Profile id="profile" />
     <Projects id="projects" />
     <Contact id="contact" />
   </main>
@@ -19,14 +19,15 @@
 
 <style scoped>
   div {
-    min-height: 100vh;
+    height: 100vh;
+    background: radial-gradient(closest-side, #000000ff 0%, #0e0e47e3 200%);
   }
 
   header > * {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
   }
 
   main > * {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
   }
 </style>

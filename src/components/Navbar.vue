@@ -14,7 +14,7 @@
     <nav class="navbar">
         <p class="navbar-title">Robert Eusanio</p>
         <div class="navbar-links">
-            <a @click="scrollToSection('about')">About Me</a>
+            <a @click="scrollToSection('profile')">About Me</a>
             <a @click="scrollToSection('projects')">Projects</a>
             <a @click="scrollToSection('contact')">Contact</a>
         </div>
@@ -29,7 +29,8 @@
         border-bottom: 2px solid black;
         height: 5rem;
         margin: 0 auto;
-        background-color: lightgray;
+        background-color: #3e1e88ff;
+        color: rgb(200, 200, 200);
     }
 
     p {
@@ -49,7 +50,7 @@
         border-style: solid;
     }
     a:hover {
-        color: blue;
+        color: white;
         cursor: pointer;
     }
 </style>

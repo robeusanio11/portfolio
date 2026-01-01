@@ -56,7 +56,7 @@
 
 <style scoped>
     .contact-section {
-        background-color: lightgreen;
+        /* background-color: lightgreen; */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -108,7 +108,7 @@
         height: 1px;
         width: 95%;
         border: 0;
-        border-top: 1px solid black;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
         margin: 1em;
         padding: 0;
     }
