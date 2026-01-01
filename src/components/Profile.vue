@@ -32,7 +32,7 @@
                 <a class="github-button" href="https://github.com/robeusanio11">
                     <img src="/github-mark-white.png" title="Github" alt="Github Icon" />
                 </a>
-                <a class="resume-button" href="src/assets/Rob_Eusanio_Resume.pdf" download="Rob-Eusanio-Resume">
+                <a class="resume-button" href="src/assets/Rob_Eusanio_Resume.pdf">
                     <img src="/icons8-resume-100-white.png" title="Download Resume" alt="Resume Icon" />
                 </a>
             </div>
@@ -88,6 +88,7 @@
         /* /* border-style: solid; */
         border-radius: 20px;
         border: 2px solid gray;
+        background-color: rgba(255, 255, 255, .075);
         transition: 
             width 0.2s ease,
             padding 0.2s ease,
@@ -125,17 +126,26 @@
     
     .profile-info > a {
         margin-right: 1rem;
+        color: rgb(225,225,225);
+        text-shadow: 
+            0 0 5px rgb(150,150,150),
+            0 0 10px rgb(150,150,150)
     }
 
     .profile-info > a:hover {
         cursor: pointer;
         color: white;
+        text-shadow: 
+            0 0 5px #6c2dffff,
+            0 0 10px #6c2dffff
     }
 
-    .active {
-        /* margin: 10rem; */
+    a.active {
         color: #9263ffff; 
         font-weight: 400;
+        text-shadow: 
+            0 0 5px #6c2dffff,
+            0 0 10px #6c2dffff
     }
 
     .line-break {

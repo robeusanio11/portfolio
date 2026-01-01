@@ -11,7 +11,10 @@
     <div class="projects-section">
         <Transition name="project-info" mode="out-in">
             <div class="project-info-container" :key="displayProject.name">
-                <h1 class="project-name">{{displayProject.name}}</h1>
+                <div class="project-heading">
+                    <h1>{{displayProject.name}}</h1>
+                    <h3>{{displayProject.company}}</h3>
+                </div>
                 <h3>{{displayProject.title}}</h3>
                 <span>Technologies: </span>
                 <span v-for="tech in displayProject.technologies">{{tech}}, </span>
@@ -55,8 +58,15 @@
         /* border-style: solid; */
     }
 
-    .project-name {
-        margin: 0 auto;
+    .project-heading {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        margin: 0;
+    }
+
+    .project-heading > h1 {
+        margin-right: 1rem;
     }
 
     .project-list-container {

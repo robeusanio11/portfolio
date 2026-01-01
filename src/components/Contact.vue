@@ -63,7 +63,7 @@
     }
 
     .contact-container {
-        border-style: solid;
+        /* border-style: solid; */
         padding: 1rem;
         /* padding-left: 10rem;
         padding-right: 10rem; */
@@ -72,6 +72,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: rgba(255, 255, 255, .075);
     }
 
     form {

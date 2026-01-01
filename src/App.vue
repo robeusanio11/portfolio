@@ -24,10 +24,10 @@
   }
 
   header > * {
-    border-bottom: 1px solid white;
+    /* border-bottom: 1px solid white; */
   }
 
   main > * {
-    border-bottom: 1px solid white;
+    /* border-bottom: 1px solid white; */
   }
 </style>
