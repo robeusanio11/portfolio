@@ -47,8 +47,8 @@
             <hr class="line-break"/>
             
             <div class="contact-links">
-                <a href="https://www.linkedin.com/in/robeusanio/"><img src="" alt="LinkedIn Icon"/></a>
-                <a href="https://github.com/robeusanio11"><img src="" alt="Github Icon"/></a>
+                <a href="https://www.linkedin.com/in/robeusanio/"><img src="/lnBug-White.png" title="LinkedIn" alt="LinkedIn Icon"/></a>
+                <a href="https://github.com/robeusanio11"><img src="/github-mark-white.png" title="Github" alt="Github Icon"/></a>
             </div>
         </div>
     </div>
@@ -56,7 +56,6 @@
 
 <style scoped>
     .contact-section {
-        /* background-color: lightgreen; */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -100,7 +99,24 @@
         padding: 1rem;
         margin: 1rem;
         margin-bottom: 0.5rem;
+        border: 2px solid gray;
         border-radius: 20px;
+        background-color: rgba(255, 255, 255, .075);
+        color: rgb(200, 200, 200);
+
+        transition:
+            background-color 0.2s ease,
+            transform 0.1s ease
+    }
+
+    form > button:hover {
+        border-color: #470099ff;
+        cursor: pointer;
+    }
+
+    form > button:active {
+        background-color: rgba(255, 255, 255, .1);
+        transform: scale(0.97);
     }
 
     hr {
@@ -119,6 +135,12 @@
 
     .contact-links > a {
         margin: 1rem;
+    }
+    
+    img {
+        width: 2rem;
+        height: 2rem;
+        margin: 0 2rem 0 2rem;
     }
 
 </style>

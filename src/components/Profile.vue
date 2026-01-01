@@ -11,7 +11,7 @@
     <div class="profile-container">
         <div class="profile-cards">
             <h2>Rob Eusanio</h2>
-            <img class="image-card" src="/LOLstats1.PNG" alt="Robert Eusanio Headshot" />
+            <img class="image-card" src="/profile-photo.JPG" alt="Robert Eusanio Headshot" />
             <div class="card">
                 <h5>Title</h5>
                 <p>Full-Stack Software Engineer</p>
@@ -27,13 +27,13 @@
             </div>
             <div class="button-links">
                 <a class="linkedin-button" href="https://www.linkedin.com/in/robeusanio/">
-                    <img src="" alt="LinkedIn Icon" />
+                    <img src="/lnBug-White.png" title="LinkedIn" alt="LinkedIn Icon" />
                 </a>
                 <a class="github-button" href="https://github.com/robeusanio11">
-                    <img src="" alt="Github Icon" />
+                    <img src="/github-mark-white.png" title="Github" alt="Github Icon" />
                 </a>
                 <a class="resume-button" href="src/assets/Rob_Eusanio_Resume.pdf" download="Rob-Eusanio-Resume">
-                    <img src="" alt="Resume Icon" />
+                    <img src="/icons8-resume-100-white.png" title="Download Resume" alt="Resume Icon" />
                 </a>
             </div>
         </div>
@@ -46,9 +46,6 @@
                 @click="display = section"
             >{{section.toUpperCase()}}</a>
             <hr class="line-break"/>
-            <!-- <a id="about" @click="display = 'about'" :class="">About Me</a>
-            <a id="education" @click="display = 'education'">Education</a>
-            <a id="enrichment" @click="display = 'enrichment'">Career Enrichment</a> -->
             <div v-if="display === 'about'">
                 <About/>
             </div>
@@ -69,7 +66,6 @@
         /* justify-content: center; */
         align-items: center;
         width: 100%;
-        /* background-color: lightblue */
     }
 
     .profile-container > div {
@@ -109,11 +105,17 @@
         margin: 0 auto;
     }
 
-    img {
+    .image-card {
         width: 25rem;
         height: 25rem;
         margin: 1rem;
-        border-style: solid;
+        border-style: solid;      
+    }
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        margin: 2rem 2rem 0 2rem;
     }
 
     .profile-info {
@@ -127,11 +129,13 @@
 
     .profile-info > a:hover {
         cursor: pointer;
+        color: white;
     }
 
     .active {
         /* margin: 10rem; */
         color: #9263ffff; 
+        font-weight: 400;
     }
 
     .line-break {

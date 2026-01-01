@@ -19,7 +19,7 @@
 
 <style scoped>
   div {
-    height: 100vh;
+    min-height: 100vh;
     background: radial-gradient(closest-side, #000000ff 0%, #0e0e47e3 200%);
   }
 

@@ -29,8 +29,9 @@
         border-bottom: 2px solid black;
         height: 5rem;
         margin: 0 auto;
-        background-color: #3e1e88ff;
-        color: rgb(200, 200, 200);
+        background-color: #9263ffff;
+        /* color: rgb(200, 200, 200); */
+        color: black;
     }
 
     p {
