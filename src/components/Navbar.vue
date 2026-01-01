@@ -50,11 +50,18 @@
     a {
         padding: 0.5rem;
         margin-right: 2.5rem;
-        border-style: solid;
+        border: 2px solid rgb(225, 225, 225);
+        border-radius: 20px;
+        color: rgb(225, 225, 225);
+        /* text-shadow: 
+            0 0 10px rgb(150,150,150),
+            0 0 20px rgb(150,150,150) */
     }
 
     a:hover {
         color: white;
         cursor: pointer;
+        border: 2px solid white;
+
     }
 </style>

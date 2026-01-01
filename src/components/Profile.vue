@@ -32,8 +32,8 @@
                 <a class="github-button" href="https://github.com/robeusanio11">
                     <img src="/github-mark-white.png" title="Github" alt="Github Icon" />
                 </a>
-                <a class="resume-button" href="src/assets/Rob_Eusanio_Resume.pdf">
-                    <img src="/icons8-resume-100-white.png" title="Download Resume" alt="Resume Icon" />
+                <a class="resume-button" href="/Rob_Eusanio_Resume.pdf">
+                    <img src="/icons8-resume-100-white.png" title="Resume" alt="Resume Icon" />
                 </a>
             </div>
         </div>
@@ -46,15 +46,17 @@
                 @click="display = section"
             >{{section.toUpperCase()}}</a>
             <hr class="line-break"/>
-            <div v-if="display === 'about'">
-                <About/>
-            </div>
-            <div v-else-if="display === 'education'">
-                <Education/>
-            </div>
-            <div v-else-if="display === 'enrichment'">
-                <Enrichment/>
-            </div>
+            <Transition mode="out-in">
+                <div v-if="display === 'about'">
+                    <About/>
+                </div>
+                <div v-else-if="display === 'education'">
+                    <Education/>
+                </div>
+                <div v-else-if="display === 'enrichment'">
+                    <Enrichment/>
+                </div>
+            </Transition>
         </div>
     </div>
 </template>
@@ -110,7 +112,8 @@
         width: 25rem;
         height: 25rem;
         margin: 1rem;
-        border-style: solid;      
+        border: 2px solid white;
+        border-radius: 20px;
     }
 
     img {
@@ -121,6 +124,7 @@
 
     .profile-info {
         background-color: rgba(255, 255, 255, .075);
+        border-radius: 20px;
         width: 40%;
     }
     
@@ -156,6 +160,21 @@
         border-top: 1px solid rgba(255, 255, 255, 0.2);
         margin-top: 1em;
         padding: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+        transition: all 0.2s ease;
+    }
+
+    .v-enter-from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+
+    .v-leave-to {
+        transform: translateX(-20px);
+        opacity: 0;
     }
 
 </style>

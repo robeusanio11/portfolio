@@ -13,7 +13,7 @@
         </ul>
         <h4>Deep Dive</h4>
         <p>I am a Full Stack Software Engineer with a strong passion for problem solving and community building! As an engineer, I strive to demonstrate these passions within the community of my team to ensure a healthy and productive workplace. I am very eager to leave a lasting impact on people's day to day lives by creating positive and impactful experiences on the users of projects I work on.</p>
-        <a class="resume-button" href="src/assets/Rob_Eusanio_Resume.pdf" download="Rob-Eusanio-Resume">Download Resume</a>
+        <a class="resume-button" href="/Rob_Eusanio_Resume.pdf" download="Rob-Eusanio-Resume">Download Resume</a>
     </div>
 
 </template>

@@ -18,7 +18,7 @@
                 <h3>{{displayProject.title}}</h3>
                 <span>Technologies: </span>
                 <span v-for="tech in displayProject.technologies">{{tech}}, </span>
-                <h3>{{displayProject.summary}}</h3>
+                <h4>{{displayProject.summary}}</h4>
                 <p>{{displayProject.description}}</p>
                 <ul>
                     <li v-for="bullet in displayProject.bullets">{{bullet}}</li>
