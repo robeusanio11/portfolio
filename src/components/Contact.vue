@@ -7,10 +7,10 @@
         message: ''
     })
 
-    // TODO: SEND MESSAGE TO ME
-    const submit = () => {
-        console.log(form.value)
-    }
+    // // TODO: SEND MESSAGE TO ME
+    // const submit = () => {
+    //     console.log(form.value)
+    // }
 
 </script>
 
@@ -18,7 +18,7 @@
     <div class="contact-section">
         <div class="contact-container">
             <h1 class="contact-title">Contact Me</h1>
-            <form class="contact-form" @submit.prevent="submit">
+            <form class="contact-form" name="contact" method="POST" data-netlify="true" @submit.prevent="submit">
                 <input
                     type="text"
                     id="name"
@@ -64,15 +64,24 @@
 
     .contact-container {
         /* border-style: solid; */
-        padding: 1rem;
         /* padding-left: 10rem;
         padding-right: 10rem; */
-        min-width: 45%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 1rem;
+        min-width: 45%;
+        border-radius: 20px;
         background-color: rgba(255, 255, 255, .075);
+    }
+
+    .contact-title {
+        color: white;
+        font-weight: 400;
+        text-shadow: 
+            0 0 10px #6c2dffff,
+            0 0 20px #6c2dffff
     }
 
     form {
