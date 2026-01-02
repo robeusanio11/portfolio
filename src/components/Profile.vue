@@ -66,14 +66,15 @@
         display: flex;
         flex-direction: row;
         /* justify-content: center; */
-        align-items: center;
+        align-items: start;
         width: 100%;
+        /* height: 100%; */
     }
 
     .profile-container > div {
         /* border-style: solid; */
         padding: 1rem;
-        margin: 1rem;
+        /* margin: 1rem; */
     }
 
     .profile-cards {
@@ -126,6 +127,8 @@
         background-color: rgba(255, 255, 255, .075);
         border-radius: 20px;
         width: 40%;
+        margin-top: 5rem;
+
     }
     
     .profile-info > a {
