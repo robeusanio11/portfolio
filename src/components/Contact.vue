@@ -18,7 +18,7 @@
     <div class="contact-section">
         <div class="contact-container">
             <h1 class="contact-title">Contact Me</h1>
-            <form class="contact-form" name="contact" method="POST" data-netlify="true" @submit.prevent="submit">
+            <form class="contact-form" name="contact" netlify @submit.prevent="submit">
                 <input
                     type="text"
                     id="name"
