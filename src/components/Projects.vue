@@ -16,13 +16,14 @@
                     <h3>{{displayProject.company}}</h3>
                 </div>
                 <h3>{{displayProject.title}}</h3>
+                <h4 class="project-summary">{{displayProject.summary}}</h4>
                 <span>Technologies: </span>
                 <span v-for="tech in displayProject.technologies">{{tech}}, </span>
-                <h4>{{displayProject.summary}}</h4>
-                <p>{{displayProject.description}}</p>
+                <!-- <p>{{displayProject.description}}</p> -->
                 <ul>
                     <li v-for="bullet in displayProject.bullets">{{bullet}}</li>
                 </ul>
+                <img class="project-image" :src="displayProject.image" alt="project media"/>
             </div>
         </Transition>
 
@@ -36,7 +37,7 @@
                 @click="displayProject = projects[index]"
                 :class="{active: project.name === displayProject.name }">
                 <h4>{{project.name}}</h4>
-                <p>{{project.title}}</p>
+                <!-- <p>{{project.title}}</p> -->
             </div>
         </div>
     </div>
@@ -51,11 +52,26 @@
     }
 
     .project-info-container {
+        /* display: flex;
+        flex-direction: column;
+        align-items: center; */
         width: 65%;
         padding: 1rem;
         margin: 1rem;
+        border-radius: 20px;
         background-color: rgba(255, 255, 255, .075);
         /* border-style: solid; */
+    }
+    .project-info-container > h3 {
+        /* color: #6c2dffff; */
+        color: rgb(200, 200, 200);
+        font-weight: 400;
+        margin: 0 0 0.5rem 0;
+    }
+    
+    .project-info-container > span {
+        color: rgb(150, 150, 150);
+        margin: 0.5rem 0 0.5rem 0;
     }
 
     .project-heading {
@@ -63,10 +79,31 @@
         flex-direction: row;
         align-items: baseline;
         margin: 0;
+        margin-bottom: 1rem;
     }
 
     .project-heading > h1 {
-        margin-right: 1rem;
+        margin: 1rem 1rem 0 0;
+        color: #6c2dffff;
+        font-weight: 400;
+    }
+
+    .project-heading > h3, h4 {
+        font-weight: 400;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .project-summary {
+        color: #6c2dffff;
+        font-weight: 500;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .project-image {
+        display: block;
+        margin: 2rem auto;
+        width: 50%;
+        border-radius: 20px;
     }
 
     .project-list-container {
@@ -82,24 +119,33 @@
     .project-card {
         padding: 0.5rem;
         margin: 0.5rem;
-        border: 2px solid gray;
+        /* border: 2px solid gray; */
         /* border-style: solid; */
         border-radius: 20px;
         width: 55%;
-        background-color: rgba(255, 255, 255, .075);
+        /* background-color: rgba(255, 255, 255, .075); */
     }
 
     .project-card:hover {
-        border-color: #470099ff;
+        /* border-color: #470099ff; */
         width: 65%;
         padding: 1rem;
         cursor: pointer;
         transition: all 0.2s ease;
+        color: #6c2dffff;
+        text-shadow: 
+            0 0 5px rgb(50,50,50),
+            0 0 10px rgb(50,50,50)
     }
     .project-card.active {
         width: 65%;
         padding: 1rem;
-        border-color: #470099ff;
+        color: white;
+        font-weight: 100;
+        text-shadow: 
+            0 0 5px #6c2dffff,
+            0 0 10px #6c2dffff
+        /* border-color: #470099ff; */
     }
     .project-card > * {
         margin: 0;
