@@ -65,44 +65,34 @@
     .profile-container {
         display: flex;
         flex-direction: row;
-        /* justify-content: center; */
         align-items: start;
         width: 100%;
-        /* height: 100%; */
-    }
-
-    .profile-container > div {
-        /* border-style: solid; */
-        padding: 1rem;
-        /* margin: 1rem; */
     }
 
     .profile-cards {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        width: 30%;
+        padding: 1rem;
     }
 
     .card {
         padding: 0.5rem;
         margin: 0.5rem;
         width: 60%;
-        /* /* border-style: solid; */
         border-radius: 20px;
         border: 2px solid gray;
         background-color: rgba(255, 255, 255, .075);
-        transition: 
-            width 0.2s ease,
-            padding 0.2s ease,
-            border-color 0.2s ease
+        transition: all 0.3s ease;
     }
 
     .card:hover {
-        border-color: #470099ff;
-        /* border-color: #9263ffff; */
-        /* width: 65%; */
+        border-color: #9263ffff;
         padding: .75rem;
+        box-shadow:
+            0 0 10px rgba(108, 45, 255, 0.3),
+            0 0 20px rgba(108, 45, 255, 0.2);
     }
 
     .card > * {
@@ -115,6 +105,27 @@
         margin: 1rem;
         border: 2px solid white;
         border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .image-card:hover {
+        border-color: #9263ffff;
+        box-shadow:
+            0 0 15px rgba(108, 45, 255, 0.4),
+            0 0 30px rgba(108, 45, 255, 0.3);
+    }
+
+    .button-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .button-links a {
+        transition: all 0.3s ease;
+    }
+
+    .button-links a:hover {
+        filter: drop-shadow(0 0 8px #9263ffff) drop-shadow(0 0 15px #6c2dffff);
     }
 
     img {
@@ -126,33 +137,34 @@
     .profile-info {
         background-color: rgba(255, 255, 255, .075);
         border-radius: 20px;
-        width: 40%;
-        margin-top: 5rem;
-
+        flex-grow: 1;
+        margin: 5rem 5rem 5rem 5rem;
+        padding: 1.5rem 2rem;
+        width: 80%;
     }
     
     .profile-info > a {
         margin-right: 1rem;
         color: rgb(225,225,225);
-        text-shadow: 
-            0 0 5px rgb(150,150,150),
-            0 0 10px rgb(150,150,150)
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
     .profile-info > a:hover {
-        cursor: pointer;
-        color: white;
-        text-shadow: 
-            0 0 5px #6c2dffff,
-            0 0 10px #6c2dffff
+        color: #9263ffff;
+        text-shadow:
+            0 0 10px #6c2dffff,
+            0 0 20px #6c2dffff,
+            0 0 30px #6c2dffff;
     }
 
     a.active {
-        color: #9263ffff; 
+        color: #9263ffff;
         font-weight: 400;
-        text-shadow: 
-            0 0 5px #6c2dffff,
-            0 0 10px #6c2dffff
+        text-shadow:
+            0 0 10px #6c2dffff,
+            0 0 20px #6c2dffff,
+            0 0 30px #6c2dffff;
     }
 
     .line-break {

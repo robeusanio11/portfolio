@@ -9,16 +9,16 @@
 
     // // TODO: SEND MESSAGE TO ME
     const handleSubmit = async (event) => {
-        const curForm = event.target;
-        const formData = new FormData(curForm);
+        // const curForm = event.target;
+        // const formData = new FormData(curForm);
 
-        await fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded"},
-            body: new URLSearchParams(formData).toString()
-        })
-            .then(() => console.log("Form successfully submitted"))
-            .catch(error => alert(error))
+        // await fetch("/", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/x-www-form-urlencoded"},
+        //     body: new URLSearchParams(formData).toString()
+        // })
+        //     .then(() => console.log("Form successfully submitted"))
+        //     .catch(error => alert(error))
     }
 
 </script>
@@ -27,7 +27,7 @@
     <div class="contact-section">
         <div class="contact-container">
             <h1 class="contact-title">Contact Me</h1>
-            <form class="contact-form" name="contact" method="POST" data-netlify="true" @submit.prevent="handleSubmit">
+            <form class="contact-form" name="contact" @submit.prevent="handleSubmit">
                 <input
                     type="text"
                     id="name"

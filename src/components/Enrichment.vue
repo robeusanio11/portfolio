@@ -32,24 +32,31 @@
         margin-bottom: 2rem;
     }
 
+    .at-a-glance li {
+        transition: all 0.3s ease;
+    }
+
     .highlighted-phrase {
         color: #9263ffff;
         font-weight: 400;
+        transition: all 0.3s ease;
     }
 
     .highlighted-phrase:hover {
-        text-shadow: 
-            0 0 5px #6c2dffff,
-            0 0 10px #6c2dffff
-    }    
+        text-shadow:
+            0 0 10px #6c2dffff,
+            0 0 20px #6c2dffff,
+            0 0 30px #6c2dffff;
+    }
 
     .enrichment-container > p {
         text-indent: 2rem;
     }
 
     .active {
-        text-shadow: 
-            0 0 5px rgb(150,150,150),
-            0 0 10px rgb(150,150,150)
+        transition: all 0.3s ease;
+        text-shadow:
+            0 0 10px #6c2dffff,
+            0 0 20px #6c2dffff;
     }
 </style>
