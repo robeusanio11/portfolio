@@ -1,82 +1,125 @@
 <script setup>
-    import {ref} from 'vue';
-
+    import { ref } from 'vue'
     import projects from '../assets/projects.json'
 
-    var displayProject = ref(projects[0]);
+    const selectedProject = ref(null)
 
+    function openProject(project) {
+        selectedProject.value = project
+    }
+
+    function closeProject() {
+        selectedProject.value = null
+    }
 </script>
 
 <template>
     <div class="projects-section">
-        <!-- Tabs at top -->
-        <div class="project-tabs">
-            <div
-                class="project-tab"
-                v-for="(project, index) in projects"
-                :key="index"
-                @click="displayProject = projects[index]"
-                :class="{active: project.name === displayProject.name }">
-                {{project.name}}
+        <h2 class="section-title">My Projects</h2>
+
+        <!-- Horizontal scrollable cards -->
+        <div class="projects-scroll-container">
+            <div class="projects-row">
+                <div
+                    class="project-card"
+                    v-for="(project, index) in projects"
+                    :key="index"
+                    @click="openProject(project)">
+                    <!-- Image -->
+                    <div class="card-image-container">
+                        <img class="card-image" :src="project.image" alt="project preview"/>
+                        <div class="card-image-overlay"></div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="card-content">
+                        <h3 class="card-title">{{ project.name }}</h3>
+                        <span class="card-role">{{ project.title }}</span>
+
+                        <div class="card-technologies">
+                            <span
+                                class="tech-badge"
+                                v-for="(tech, techIndex) in project.technologies.slice(0, 3)"
+                                :key="techIndex">
+                                {{ tech }}
+                            </span>
+                            <span class="tech-badge tech-more" v-if="project.technologies.length > 3">
+                                +{{ project.technologies.length - 3 }}
+                            </span>
+                        </div>
+
+                        <span class="card-hint">Click to view details</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Content area -->
-        <Transition name="project-info" mode="out-in">
-            <div class="project-content" :key="displayProject.name">
-                <!-- Left: Details -->
-                <div class="project-details">
-                    <div class="project-header">
-                        <h1 class="project-name">{{displayProject.name}}</h1>
-                        <span class="project-company">{{displayProject.company}}</span>
+        <!-- Expanded detail overlay -->
+        <Transition name="overlay">
+            <div class="project-overlay" v-if="selectedProject" @click.self="closeProject">
+                <Transition name="modal">
+                    <div class="project-modal" v-if="selectedProject">
+                        <button class="modal-close" @click="closeProject">&times;</button>
+
+                        <div class="modal-content">
+                            <!-- Left: Image + Links -->
+                            <div class="modal-left">
+                                <div class="modal-image-container">
+                                    <img class="modal-image" :src="selectedProject.image" alt="project preview"/>
+                                </div>
+
+                                <div class="modal-links">
+                                    <a
+                                        class="modal-link"
+                                        :href="selectedProject.github || '#'"
+                                        target="_blank"
+                                        :class="{ disabled: !selectedProject.github }"
+                                        @click.stop>
+                                        <span class="link-icon">&#60;/&#62;</span>
+                                        GitHub
+                                    </a>
+                                    <a
+                                        class="modal-link modal-link-primary"
+                                        :href="selectedProject.demo || '#'"
+                                        target="_blank"
+                                        :class="{ disabled: !selectedProject.demo }"
+                                        @click.stop>
+                                        <span class="link-icon">&#9654;</span>
+                                        Live Demo
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Right: Details -->
+                            <div class="modal-details">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">{{ selectedProject.name }}</h2>
+                                    <span class="modal-company">{{ selectedProject.company }}</span>
+                                    <p class="modal-role">{{ selectedProject.title }}</p>
+                                </div>
+
+                                <p class="modal-summary">{{ selectedProject.summary }}</p>
+
+                                <div class="modal-technologies">
+                                    <span
+                                        class="tech-badge"
+                                        v-for="(tech, techIndex) in selectedProject.technologies"
+                                        :key="techIndex">
+                                        {{ tech }}
+                                    </span>
+                                </div>
+
+                                <h4 class="highlights-label">Highlights</h4>
+                                <ul class="modal-bullets">
+                                    <li v-for="(bullet, bulletIndex) in selectedProject.bullets" :key="bulletIndex">
+                                        {{ bullet }}
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
                     </div>
-                    <p class="project-title">{{displayProject.title}}</p>
-
-                    <div class="project-divider"></div>
-
-                    <p class="project-summary">{{displayProject.summary}}</p>
-
-                    <div class="project-technologies">
-                        <span
-                            class="tech-badge"
-                            v-for="(tech, index) in displayProject.technologies"
-                            :key="index">
-                            {{tech}}
-                        </span>
-                    </div>
-
-                    <h4 class="highlights-label">Highlights</h4>
-                    <ul class="project-bullets">
-                        <li v-for="(bullet, index) in displayProject.bullets" :key="index">
-                            <span class="bullet-text">{{bullet}}</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Right: Preview -->
-                <div class="project-preview">
-                    <div class="image-container">
-                        <img class="project-image" :src="displayProject.image" alt="project media"/>
-                    </div>
-                    <div class="project-links">
-                        <a
-                            class="project-link"
-                            :href="displayProject.github || '#'"
-                            target="_blank"
-                            :class="{disabled: !displayProject.github}">
-                            <span class="link-icon">&#60;/&#62;</span>
-                            GitHub
-                        </a>
-                        <a
-                            class="project-link project-link-primary"
-                            :href="displayProject.demo || '#'"
-                            target="_blank"
-                            :class="{disabled: !displayProject.demo}">
-                            <span class="link-icon">&#9654;</span>
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
+                </Transition>
             </div>
         </Transition>
     </div>
@@ -86,240 +129,334 @@
     .projects-section {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-        height: calc(100vh - var(--navbar-height));
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-
-    /* Tabs */
-    .project-tabs {
-        display: flex;
         justify-content: center;
-        gap: 1rem;
-        padding: 1rem;
-        width: 100%;
-        flex-shrink: 0;
-    }
-
-    .project-tab {
-        padding: 0.5rem 1.5rem;
-        border-radius: 20px;
-        background-color: rgba(255, 255, 255, .075);
-        border: 2px solid gray;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 0.9rem;
-    }
-
-    .project-tab:hover {
-        border-color: #9263ffff;
-        color: #9263ffff;
-        box-shadow:
-            0 0 10px rgba(108, 45, 255, 0.2),
-            0 0 20px rgba(108, 45, 255, 0.1);
-    }
-
-    .project-tab.active {
-        background-color: #9263ffff;
-        border-color: #9263ffff;
-        color: white;
-        box-shadow:
-            0 0 10px rgba(108, 45, 255, 0.3),
-            0 0 20px rgba(108, 45, 255, 0.2);
-    }
-
-    /* Content area */
-    .project-content {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        padding: 1.5rem;
-        margin-top: 1rem;
-        border-radius: 20px;
-        background-color: rgba(255, 255, 255, .075);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        flex: 1;
-        min-height: 0;
-        overflow-y: auto;
-        overflow-x: hidden;
+        padding: 2rem;
+        min-height: calc(100vh - var(--navbar-height));
         box-sizing: border-box;
     }
 
-    .project-content::-webkit-scrollbar {
-        width: 8px;
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 300;
+        color: #9263ffff;
+        margin: 0 0 1rem 0;
+        letter-spacing: 0.05rem;
+        text-shadow: 0 0 20px rgba(146, 99, 255, 0.3);
     }
 
-    .project-content::-webkit-scrollbar-track {
+    /* Horizontal scroll container */
+    .projects-scroll-container {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 1rem 0 2rem 0;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(146, 99, 255, 0.5) rgba(255, 255, 255, 0.1);
+    }
+
+    .projects-scroll-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .projects-scroll-container::-webkit-scrollbar-track {
         background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        margin: 20px 0;
+        border-radius: 10px;
     }
 
-    .project-content::-webkit-scrollbar-thumb {
+    .projects-scroll-container::-webkit-scrollbar-thumb {
         background: rgba(146, 99, 255, 0.5);
-        border-radius: 20px;
+        border-radius: 10px;
     }
 
-    .project-content::-webkit-scrollbar-thumb:hover {
+    .projects-scroll-container::-webkit-scrollbar-thumb:hover {
         background: rgba(146, 99, 255, 0.7);
     }
 
-    /* Left: Details */
-    .project-details {
-        width: 60%;
-        padding: 1rem 2rem 1rem 1rem;
-    }
-
-    .project-header {
-        margin-bottom: 0.5rem;
-    }
-
-    .project-name {
-        margin: 0;
-        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 2.25rem;
-        font-weight: 300;
-        letter-spacing: 0.02rem;
-        color: #9263ffff;
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-    }
-
-    .project-company {
-        font-size: 1rem;
-        color: rgb(180, 180, 180);
-        font-style: italic;
-    }
-
-    .project-title {
-        color: rgb(200, 200, 200);
-        font-size: 1.1rem;
-        font-weight: 300;
-        margin: 0.5rem 0 1rem 0;
-    }
-
-    .project-divider {
-        height: 1px;
-        background: linear-gradient(90deg, #6c2dffff, transparent);
-        margin: 1rem 0;
-        width: 80%;
-    }
-
-    .project-summary {
-        color: rgb(220, 220, 220);
-        font-size: 1.05rem;
-        line-height: 1.6;
-        margin: 0 0 1.5rem 0;
-    }
-
-    .project-technologies {
+    .projects-row {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
+        gap: 1.25rem;
+        padding: 0.5rem;
+        width: max-content;
+        margin: 0 auto;
     }
 
-    .tech-badge {
-        padding: 0.3rem 0.75rem;
-        border-radius: 15px;
-        background-color: rgba(108, 45, 255, 0.15);
-        border: 1px solid rgba(108, 45, 255, 0.3);
-        color: #b8a0ff;
-        font-size: 0.8rem;
+    /* Cards */
+    .project-card {
+        width: 280px;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
         transition: all 0.3s ease;
     }
 
-    .tech-badge:hover {
-        background-color: rgba(108, 45, 255, 0.25);
+    .project-card:hover {
+        transform: translateY(-6px);
         border-color: #9263ffff;
-        box-shadow: 0 0 10px rgba(108, 45, 255, 0.2);
+        box-shadow:
+            0 15px 30px rgba(0, 0, 0, 0.3),
+            0 0 25px rgba(146, 99, 255, 0.2),
+            0 0 50px rgba(146, 99, 255, 0.1);
+    }
+
+    .card-image-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .card-image {
+        transform: scale(1.05);
+    }
+
+    .card-image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            transparent 40%,
+            rgba(0, 0, 0, 0.7) 100%
+        );
+        pointer-events: none;
+    }
+
+    .card-content {
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #9263ffff;
+    }
+
+    .card-role {
+        font-size: 0.8rem;
+        color: rgb(160, 160, 160);
+        display: block;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-technologies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .tech-badge {
+        padding: 0.2rem 0.5rem;
+        border-radius: 10px;
+        background-color: rgba(108, 45, 255, 0.15);
+        border: 1px solid rgba(108, 45, 255, 0.3);
+        color: #b8a0ff;
+        font-size: 0.65rem;
+        transition: all 0.3s ease;
+    }
+
+    .tech-more {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgb(180, 180, 180);
+    }
+
+    .card-hint {
+        font-size: 0.7rem;
+        color: rgb(120, 120, 120);
+        font-style: italic;
+    }
+
+    /* Overlay */
+    .project-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 2rem;
+        backdrop-filter: blur(4px);
+    }
+
+    /* Modal */
+    .project-modal {
+        position: relative;
+        background: linear-gradient(145deg, rgba(30, 30, 40, 0.98), rgba(20, 20, 28, 0.98));
+        border: 1px solid rgba(146, 99, 255, 0.3);
+        border-radius: 20px;
+        max-width: 1000px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.5),
+            0 0 40px rgba(146, 99, 255, 0.15);
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        z-index: 10;
+    }
+
+    .modal-close:hover {
+        background: rgba(146, 99, 255, 0.3);
+        border-color: #9263ffff;
+    }
+
+    .modal-content {
+        display: flex;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .modal-left {
+        flex-shrink: 0;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+        gap: 1rem;
+    }
+
+    .modal-image-container {
+        width: 100%;
+        height: fit-content;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-image {
+        width: 100%;
+        display: block;
+    }
+
+    .modal-details {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .modal-header {
+        margin-bottom: 1rem;
+    }
+
+    .modal-title {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 400;
+        color: #9263ffff;
+        text-shadow: 0 0 10px rgba(146, 99, 255, 0.3);
+    }
+
+    .modal-company {
+        font-size: 0.95rem;
+        color: rgb(160, 160, 160);
+        font-style: italic;
+    }
+
+    .modal-role {
+        font-size: 1rem;
+        color: rgb(200, 200, 200);
+        margin: 0.5rem 0 0 0;
+    }
+
+    .modal-summary {
+        color: rgb(210, 210, 210);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0 0 1.25rem 0;
+    }
+
+    .modal-technologies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .modal-technologies .tech-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.6rem;
     }
 
     .highlights-label {
         color: #9263ffff;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 500;
         margin: 0 0 0.75rem 0;
         text-transform: uppercase;
         letter-spacing: 0.05rem;
     }
 
-    .project-bullets {
-        margin: 0;
+    .modal-bullets {
+        margin: 0 0 1.5rem 0;
         padding-left: 0;
         list-style: none;
     }
 
-    .project-bullets > li {
+    .modal-bullets > li {
         position: relative;
-        padding-left: 1.5rem;
-        margin-bottom: 0.75rem;
-        line-height: 1.6;
+        padding-left: 1.25rem;
+        margin-bottom: 0.6rem;
+        color: rgb(200, 200, 200);
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 
-    .project-bullets > li::before {
+    .modal-bullets > li::before {
         content: '▹';
         position: absolute;
         left: 0;
         color: #9263ffff;
-        font-size: 1rem;
     }
 
-    .bullet-text {
-        color: rgb(200, 200, 200);
-    }
-
-    /* Right: Preview */
-    .project-preview {
-        width: 40%;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-    }
-
-    .image-container {
-        width: 100%;
-        max-width: 400px;
-        border-radius: 20px;
-        overflow: hidden;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .image-container:hover {
-        border-color: #9263ffff;
-        box-shadow:
-            0 0 20px rgba(108, 45, 255, 0.3),
-            0 0 40px rgba(108, 45, 255, 0.15);
-    }
-
-    .project-image {
-        width: 100%;
-        display: block;
-        transition: transform 0.3s ease;
-    }
-
-    .image-container:hover .project-image {
-        transform: scale(1.02);
-    }
-
-    .project-links {
+    .modal-links {
         display: flex;
         gap: 1rem;
-        margin-top: 1.5rem;
     }
 
-    .project-link {
+    .modal-link {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         padding: 0.6rem 1.25rem;
         border-radius: 20px;
-        background-color: rgba(255, 255, 255, .075);
-        border: 2px solid gray;
+        background-color: rgba(255, 255, 255, 0.075);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         color: rgb(200, 200, 200);
         text-decoration: none;
         transition: all 0.3s ease;
@@ -330,220 +467,131 @@
         font-size: 0.85rem;
     }
 
-    .project-link:hover {
+    .modal-link:hover {
         border-color: #9263ffff;
         color: #9263ffff;
-        box-shadow:
-            0 0 10px rgba(108, 45, 255, 0.3),
-            0 0 20px rgba(108, 45, 255, 0.2);
+        box-shadow: 0 0 15px rgba(108, 45, 255, 0.3);
     }
 
-    .project-link-primary {
+    .modal-link-primary {
         background-color: #9263ffff;
         border-color: #9263ffff;
         color: white;
     }
 
-    .project-link-primary:hover {
+    .modal-link-primary:hover {
         background-color: #7c4dff;
         color: white;
-        box-shadow:
-            0 0 15px rgba(108, 45, 255, 0.5),
-            0 0 30px rgba(108, 45, 255, 0.3);
+        box-shadow: 0 0 20px rgba(108, 45, 255, 0.5);
     }
 
-    .project-link.disabled {
+    .modal-link.disabled {
         opacity: 0.4;
         cursor: not-allowed;
         pointer-events: none;
     }
 
     /* Transitions */
-    .project-info-enter-active,
-    .project-info-leave-active {
-        transition: all 0.2s ease;
+    .overlay-enter-active,
+    .overlay-leave-active {
+        transition: opacity 0.3s ease;
     }
 
-    .project-info-enter-from {
+    .overlay-enter-from,
+    .overlay-leave-to {
         opacity: 0;
-        transform: translateY(1rem);
     }
 
-    .project-info-leave-to {
+    .modal-enter-active,
+    .modal-leave-active {
+        transition: all 0.3s ease;
+    }
+
+    .modal-enter-from,
+    .modal-leave-to {
         opacity: 0;
-        transform: translateY(-1rem);
+        transform: scale(0.9) translateY(20px);
     }
 
     /* Tablet */
     @media (max-width: 1024px) {
-        .project-tabs {
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            padding: 0.75rem;
+        .project-card {
+            width: 250px;
         }
 
-        .project-tab {
-            padding: 0.4rem 1rem;
-            font-size: 0.85rem;
+        .modal-content {
+            flex-direction: column;
+            padding: 1.5rem;
         }
 
-        .project-content {
-            padding: 1rem;
+        .modal-left {
+            width: 100%;
+            max-width: 400px;
         }
 
-        .project-details {
-            width: 55%;
-            padding: 0.75rem 1rem 0.75rem 0.5rem;
-        }
-
-        .project-name {
-            font-size: 1.75rem;
-        }
-
-        .project-company {
-            font-size: 0.9rem;
-        }
-
-        .project-title {
-            font-size: 1rem;
-        }
-
-        .project-summary {
-            font-size: 0.95rem;
-        }
-
-        .tech-badge {
-            padding: 0.25rem 0.6rem;
-            font-size: 0.75rem;
-        }
-
-        .project-preview {
-            width: 45%;
-            padding: 0.75rem;
-        }
-
-        .image-container {
-            max-width: 300px;
-        }
-
-        .project-link {
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
+        .modal-title {
+            font-size: 1.5rem;
         }
     }
 
     /* Mobile */
-    @media (max-width: 768px) {
+    @media (max-width: 640px) {
         .projects-section {
-            padding: 0.5rem;
-            height: calc(100vh - var(--navbar-height));
-        }
-
-        .project-tabs {
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 0.5rem;
-        }
-
-        .project-tab {
-            padding: 0.35rem 0.75rem;
-            font-size: 0.75rem;
-        }
-
-        .project-content {
-            flex-direction: column;
             padding: 1rem;
-            margin-top: 0.5rem;
         }
 
-        .project-details {
-            width: 100%;
-            padding: 0.5rem;
-            order: 2;
+        .project-card {
+            width: 220px;
         }
 
-        .project-header {
-            text-align: center;
+        .card-title {
+            font-size: 1rem;
         }
 
-        .project-name {
-            font-size: 1.5rem;
+        .project-overlay {
+            padding: 1rem;
         }
 
-        .project-company {
+        .project-modal {
+            max-height: 85vh;
+        }
+
+        .modal-content {
+            padding: 1.25rem;
+            gap: 1rem;
+        }
+
+        .modal-close {
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 32px;
+            height: 32px;
+            font-size: 1.25rem;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+        }
+
+        .modal-company,
+        .modal-role {
             font-size: 0.85rem;
-            display: block;
-            margin-top: 0.25rem;
         }
 
-        .project-title {
+        .modal-summary {
             font-size: 0.9rem;
-            text-align: center;
         }
 
-        .project-divider {
-            width: 60%;
-            margin: 0.75rem auto;
-        }
-
-        .project-summary {
-            font-size: 0.9rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .project-technologies {
-            justify-content: center;
-            gap: 0.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-badge {
-            padding: 0.2rem 0.5rem;
-            font-size: 0.7rem;
-        }
-
-        .highlights-label {
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        .project-bullets {
-            padding-left: 0.5rem;
-        }
-
-        .project-bullets > li {
-            padding-left: 1.25rem;
-            margin-bottom: 0.5rem;
+        .modal-bullets > li {
             font-size: 0.85rem;
-            line-height: 1.5;
         }
 
-        .project-preview {
+        .modal-left {
             width: 100%;
-            padding: 0.5rem;
-            order: 1;
-            margin-bottom: 1rem;
         }
 
-        .image-container {
-            max-width: 100%;
-        }
-
-        .project-links {
-            margin-top: 1rem;
-            gap: 0.75rem;
-        }
-
-        .project-link {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            gap: 0.4rem;
-        }
-
-        .link-icon {
-            font-size: 0.75rem;
+        .modal-links {
+            width: 100%;
         }
     }
-
 </style>
