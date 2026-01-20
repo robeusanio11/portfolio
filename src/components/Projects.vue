@@ -144,8 +144,7 @@
         box-sizing: border-box;
         width: calc(100% - 2rem);
         max-width: calc(100% - 2rem);
-        flex: 1;
-        min-height: 0;
+        max-height: calc(100% - 5rem);
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -385,12 +384,9 @@
         }
 
         .project-content {
-            flex: 1;
-            min-height: 0;
-            overflow-y: auto;
-            overflow-x: hidden;
             width: calc(100% - 1.5rem);
             max-width: calc(100% - 1.5rem);
+            max-height: calc(100% - 5rem);
         }
 
         .project-tabs {
@@ -458,12 +454,9 @@
         }
 
         .project-content {
-            flex: 1;
-            min-height: 0;
-            overflow-y: auto;
-            overflow-x: hidden;
             width: calc(100% - 1rem);
             max-width: calc(100% - 1rem);
+            max-height: calc(100% - 4rem);
         }
 
         .project-tabs {
