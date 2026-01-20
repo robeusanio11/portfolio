@@ -75,7 +75,17 @@
   /* Mobile */
   @media (max-width: 768px) {
     .section {
+      height: 100dvh;
+      min-height: 100dvh;
       padding: 1rem 0.5rem 3.5rem;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      /* Safari mobile - ensure full viewport height */
+      .section {
+        height: -webkit-fill-available;
+        min-height: -webkit-fill-available;
+      }
     }
   }
 </style>
