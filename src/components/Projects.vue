@@ -88,9 +88,11 @@
         flex-direction: column;
         align-items: center;
         padding: 1rem;
-        height: calc(100vh - var(--navbar-height));
-        overflow: hidden;
         box-sizing: border-box;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100vw;
+        height: 100%;
     }
 
     /* Tabs */
@@ -134,17 +136,18 @@
     .project-content {
         display: flex;
         flex-direction: row;
-        width: 100%;
         padding: 1.5rem;
         margin-top: 1rem;
         border-radius: 20px;
         background-color: rgba(255, 255, 255, .075);
         border: 1px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+        width: calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
         flex: 1;
         min-height: 0;
         overflow-y: auto;
         overflow-x: hidden;
-        box-sizing: border-box;
     }
 
     .project-content::-webkit-scrollbar {
@@ -376,6 +379,20 @@
 
     /* Tablet */
     @media (max-width: 1024px) {
+        .projects-section {
+            height: calc(100vh - var(--navbar-height));
+            overflow: hidden;
+        }
+
+        .project-content {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: calc(100% - 1.5rem);
+            max-width: calc(100% - 1.5rem);
+        }
+
         .project-tabs {
             flex-wrap: wrap;
             gap: 0.75rem;
@@ -437,6 +454,16 @@
         .projects-section {
             padding: 0.5rem;
             height: calc(100vh - var(--navbar-height));
+            overflow: hidden;
+        }
+
+        .project-content {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: calc(100% - 1rem);
+            max-width: calc(100% - 1rem);
         }
 
         .project-tabs {
