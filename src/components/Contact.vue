@@ -7,18 +7,23 @@
         message: ''
     })
 
-    // // TODO: SEND MESSAGE TO ME
     const handleSubmit = async (event) => {
-        // const curForm = event.target;
-        // const formData = new FormData(curForm);
+        const formData = new FormData(event.target);
+        formData.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY);
 
-        // await fetch("/", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/x-www-form-urlencoded"},
-        //     body: new URLSearchParams(formData).toString()
-        // })
-        //     .then(() => console.log("Form successfully submitted"))
-        //     .catch(error => alert(error))
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            form.value = { name: '', email: '', message: '' };
+            alert("Message sent!");
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
     }
 
 </script>
