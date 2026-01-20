@@ -142,7 +142,7 @@
         background-color: rgba(255, 255, 255, .075);
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-sizing: border-box;
-        width: calc(100% - 2rem);
+        width: calc(70% - 2rem);
         max-width: calc(100% - 2rem);
         max-height: calc(100% - 5rem);
         overflow-y: auto;

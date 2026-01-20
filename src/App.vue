@@ -33,18 +33,29 @@
 
   .section {
     height: 100vh;
+    height: 100dvh;
     padding: 2rem 1rem 5rem;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
   }
 
+  @supports (-webkit-touch-callout: none) {
+    /* Safari-specific fix for viewport height */
+    .section {
+      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+    }
+  }
+
   .section-content {
-    flex: 1;
+    flex: 1 1 0%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     min-height: 0;
+    /* Safari flex overflow fix */
+    -webkit-flex: 1 1 0%;
   }
 
   .section-content > * {
