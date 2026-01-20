@@ -2,7 +2,7 @@
   import Profile from './components/Profile.vue'
   import Projects from './components/Projects.vue'
   import Contact from './components/Contact.vue'
-  import SectionNav from './components/SectionNav.vue'
+  import GlobalNav from './components/GlobalNav.vue'
 </script>
 
 <template>
@@ -11,20 +11,18 @@
       <div class="section-content">
         <Profile />
       </div>
-      <SectionNav :currentIndex="0" />
     </section>
     <section id="projects" class="section">
       <div class="section-content">
         <Projects />
       </div>
-      <SectionNav :currentIndex="1" />
     </section>
     <section id="contact" class="section">
       <div class="section-content">
         <Contact />
       </div>
-      <SectionNav :currentIndex="2" />
     </section>
+    <GlobalNav />
   </main>
 </template>
 
@@ -35,7 +33,7 @@
 
   .section {
     height: 100vh;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 5rem;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -59,14 +57,14 @@
   /* Tablet */
   @media (max-width: 1024px) {
     .section {
-      padding: 1.5rem 0.75rem;
+      padding: 1.5rem 0.75rem 4rem;
     }
   }
 
   /* Mobile */
   @media (max-width: 768px) {
     .section {
-      padding: 1rem 0.5rem;
+      padding: 1rem 0.5rem 3.5rem;
     }
   }
 </style>
