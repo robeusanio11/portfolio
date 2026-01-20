@@ -34,19 +34,24 @@
   }
 
   .section {
-    min-height: 100vh;
+    height: 100vh;
     padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
   }
 
   .section-content {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
   }
 
   .section-content > * {
-    flex-grow: 1;
+    flex: 1;
+    overflow: auto;
+    min-height: 0;
   }
 </style>

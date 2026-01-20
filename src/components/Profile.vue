@@ -8,6 +8,7 @@
 </script>
 
 <template>
+    <div class="profile-wrapper">
     <div class="profile-container">
         <div class="profile-cards">
             <h2>Rob Eusanio</h2>
@@ -59,28 +60,56 @@
             </Transition>
         </div>
     </div>
+    </div>
 </template>
 
 <style scoped>
+    /* * {
+        box-sizing: border-box;
+    } */
+    .profile-wrapper {
+        /* display: flex; */
+        width: 100%;
+        height: calc(100vh - var(--navbar-height));
+        overflow: hidden;
+    }
+
     .profile-container {
         display: flex;
         flex-direction: row;
-        align-items: start;
+        padding: 1px 0;
+        
+        /* align-items: stretch; */
+        /* align-items: flex-start; */
         width: 100%;
+        height: 100%;
+        min-height: 0;
     }
 
     .profile-cards {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        /* height: 100%; */
         width: 30%;
-        padding: 1rem;
+        padding: 0.5rem;
+        /* height: 100%; */
+        min-height: 0;
+        /* max-height: 100%; */
+        /* overflow-y: auto; */
+        flex: 0 0 30%;
+    }
+
+    .profile-cards > h2 {
+        margin: 0;
     }
 
     .card {
         padding: 0.5rem;
-        margin: 0.5rem;
-        width: 60%;
+        margin: .5rem;
+        width: 80%;
         border-radius: 20px;
         border: 2px solid gray;
         background-color: rgba(255, 255, 255, .075);
@@ -88,11 +117,11 @@
     }
 
     .card:hover {
+        /* padding: 1rem; */
         border-color: #9263ffff;
-        padding: .75rem;
         box-shadow:
-            0 0 10px rgba(108, 45, 255, 0.3),
-            0 0 20px rgba(108, 45, 255, 0.2);
+            0 0 15px rgba(108, 45, 255, 0.4),
+            0 0 30px rgba(108, 45, 255, 0.3);
     }
 
     .card > * {
@@ -100,12 +129,15 @@
     }
 
     .image-card {
-        width: 25rem;
-        height: 25rem;
-        margin: 1rem;
+        width: 100%;
+        height: auto;
+        max-width: 18rem;
+        aspect-ratio: 1 / 1;
+        margin: 0.5rem;
         border: 2px solid white;
         border-radius: 20px;
         transition: all 0.3s ease;
+        object-fit: cover;
     }
 
     .image-card:hover {
@@ -131,16 +163,20 @@
     img {
         width: 2rem;
         height: 2rem;
-        margin: 2rem 2rem 0 2rem;
+        margin: 0.5rem;
     }
 
     .profile-info {
         background-color: rgba(255, 255, 255, .075);
         border-radius: 20px;
-        flex-grow: 1;
-        margin: 5rem 5rem 5rem 5rem;
-        padding: 1.5rem 2rem;
-        width: 80%;
+        flex: 1 1 0;
+        min-width: 0;
+        margin: 1rem 3rem;
+        padding: 1rem 2rem;
+        min-height: 0;
+        overflow-y: auto;
+        align-self: flex-start;
+        max-height: 100%;
     }
     
     .profile-info > a {
@@ -191,5 +227,13 @@
         transform: translateX(-20px);
         opacity: 0;
     }
+
+    .profile-wrapper,
+    .profile-container,
+    .profile-cards,
+    .profile-info {
+        box-sizing: border-box;
+    }
+
 
 </style>

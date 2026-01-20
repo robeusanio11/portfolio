@@ -83,9 +83,9 @@ const goDown = () => {
     align-items: center;
     gap: 2rem;
     padding: 0.75rem 1.5rem;
-    margin-top: auto;
-    padding-top: 2rem;
-    margin-bottom: 3rem;
+    margin-top: 0;
+    /* padding-top: 2rem; */
+    /* margin-bottom: 3rem; */
 }
 
 .nav-arrow {
