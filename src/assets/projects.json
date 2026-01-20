@@ -7,6 +7,8 @@
         "summary": "An interactive web-based digital atlas with an events menu and time-slider for a view through history",
         "description": "description",
         "image": "/LOLstats1.PNG",
+        "github": "",
+        "demo": "",
         "bullets": ["Dynamically filtered and displayed GeoJSON border data to map using React-Leaflet based on the user selected year", "Utilized modern React best practices to optimize performance in handling program state and introduced interactivity to the map with features such as an updating menu on hover and zooming to the bounds of what is clicked", "Created an express server that retrieves geographic data from a MySQL database, then builds and serves a GeoJSON file to the client for display"]
     },
     {
@@ -17,6 +19,8 @@
         "summary": "A deep learning model used for semantic segmentation in the lunar environment.",
         "description": "description",
         "image": "/LOLstats1.PNG",
+        "github": "",
+        "demo": "",
         "bullets": ["Developed a model that creates segmentation masks for the lunar environment with classes differentiating the ground, sky, large rocks, and small rocks using U-Net and Tensorflow at 90% accuracy.", "Presented research in the Great Minds in Stem (GMiS) poster competition.", "The model consists of three encoder blocks (two 3x3 convolutions and maxpooling each), a 512-filter bottleneck, three mirrored decoder blocks, and is trained with sparse categorical cross-entropy"]
     },
     {
@@ -27,6 +31,8 @@
         "summary": "A proof of concept for a statistic visualizer for the video game League of Legends",
         "description": "description",
         "image": "/LOLstats1.PNG",
+        "github": "",
+        "demo": "",
         "bullets": ["Built a full stack application that pulls data from the Riot Games API to display recent statistics.", "Application includes several graphs with Nivo to allow for users to easily interpret their recent performance and compare it to a number of benchmarks.", "Setup a RESTful API with Express to communicate with the front-end and dynamically render persistent data from a MongoDB database."]
     },
     {
@@ -37,6 +43,8 @@
         "summary": "A back end for an online marketplace scaled to handle realistic amounts of data/user traffic",
         "description": "description",
         "image": "/LOLstats1.PNG",
+        "github": "",
+        "demo": "",
         "bullets": ["Implemented foreign-key column indexing to increase the read speeds on high-volume requests.", "Used K6 to simulate 1000 virtual users continuously hitting an endpoint and was able to handle over 700 rps when querying through a table of 50 million records.", "Optimized the seeding process of the database by writing to a CSV and copying the data to the database."]
     },
     {
@@ -47,6 +55,8 @@
         "summary": "A portfolio website for displaying personal achievements and experience",
         "description": "description",
         "image": "/LOLstats1.PNG",
+        "github": "",
+        "demo": "",
         "bullets": ["test", "test", "test"]
     }
 ]
