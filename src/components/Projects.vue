@@ -380,6 +380,7 @@
     @media (max-width: 1024px) {
         .projects-section {
             height: calc(100vh - var(--navbar-height));
+            height: calc(100dvh - var(--navbar-height));
             overflow: hidden;
         }
 
@@ -450,6 +451,7 @@
         .projects-section {
             padding: 0.5rem;
             height: calc(100vh - var(--navbar-height));
+            height: calc(100dvh - var(--navbar-height));
             overflow: hidden;
         }
 
