@@ -162,4 +162,57 @@
         margin: 0 2rem 0 2rem;
     }
 
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .contact-container {
+            min-width: 60%;
+        }
+
+        form > input, form > textarea {
+            width: 60%;
+        }
+
+        .message-input {
+            width: 80%;
+        }
+
+        form > button {
+            width: 60%;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .contact-container {
+            min-width: auto;
+            width: 95%;
+            padding: 0.75rem;
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        form > input, form > textarea {
+            width: 90%;
+            padding: 0.75rem;
+            margin: 0.5rem;
+        }
+
+        .message-input {
+            width: 90%;
+            height: 8em;
+        }
+
+        form > button {
+            width: 90%;
+            padding: 0.75rem;
+        }
+
+        img {
+            margin: 0 1rem;
+        }
+    }
+
 </style>

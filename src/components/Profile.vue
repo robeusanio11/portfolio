@@ -178,6 +178,27 @@
         align-self: flex-start;
         max-height: 100%;
     }
+
+    .profile-info::-webkit-scrollbar {
+        display: block;
+        width: 8px;
+    }
+
+    .profile-info::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .profile-info::-webkit-scrollbar-thumb {
+        background: rgba(146, 99, 255, 0.5);
+        border-radius: 20px;
+    }
+
+    .profile-info::-webkit-scrollbar-thumb:hover {
+        background: rgba(146, 99, 255, 0.7);
+    }
     
     .profile-info > a {
         margin-right: 1rem;
@@ -235,5 +256,86 @@
         box-sizing: border-box;
     }
 
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .profile-cards {
+            width: 35%;
+            flex: 0 0 35%;
+        }
+
+        .profile-info {
+            margin: 1rem;
+            padding: 1rem;
+        }
+
+        .image-card {
+            max-width: 12rem;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .profile-container {
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .profile-cards {
+            width: 100%;
+            flex: 0 0 auto;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0.5rem;
+            gap: 0.5rem;
+        }
+
+        .profile-cards > h2 {
+            width: 100%;
+            text-align: center;
+        }
+
+        .image-card {
+            display: none;
+        }
+
+        .card {
+            width: auto;
+            flex: 1 1 40%;
+            min-width: 140px;
+            margin: 0.25rem;
+            padding: 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        .card h5 {
+            font-size: 0.8rem;
+        }
+
+        .card p {
+            font-size: 0.75rem;
+        }
+
+        .button-links {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .profile-info {
+            margin: 0.5rem;
+            padding: 0.75rem;
+            flex: 1 1 auto;
+            align-self: stretch;
+        }
+
+        .profile-info > h2 {
+            font-size: 1.2rem;
+        }
+
+        .profile-info > a {
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+        }
+    }
 
 </style>

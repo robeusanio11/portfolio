@@ -54,4 +54,18 @@
     overflow: auto;
     min-height: 0;
   }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .section {
+      padding: 1.5rem 0.75rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .section {
+      padding: 1rem 0.5rem;
+    }
+  }
 </style>

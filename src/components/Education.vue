@@ -57,4 +57,23 @@
             0 0 20px #6c2dffff;
     }
 
+    /* Mobile */
+    @media (max-width: 768px) {
+        .education-container > p {
+            text-indent: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        h4 {
+            font-size: 1rem;
+            margin: 0.75rem 0;
+        }
+
+        .at-a-glance {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+    }
+
 </style>

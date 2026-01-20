@@ -122,4 +122,49 @@ const scrollToProjects = () => {
             0 0 20px #6c2dffff,
             0 0 30px #6c2dffff;
     }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .button-group {
+            gap: 0.75rem;
+        }
+
+        .projects-button,
+        .resume-button {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .about-container > p {
+            text-indent: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        h4 {
+            font-size: 1rem;
+            margin: 0.75rem 0;
+        }
+
+        .at-a-glance {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .button-group {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+        }
+
+        .projects-button,
+        .resume-button {
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+    }
 </style>
