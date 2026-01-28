@@ -64,4 +64,45 @@
         border: 2px solid white;
 
     }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .navbar-links {
+            margin-right: 1rem;
+        }
+
+        a {
+            padding: 0.4rem 0.6rem;
+            margin-right: 1rem;
+            font-size: 0.85rem;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        nav {
+            height: auto;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+        }
+
+        .navbar-title {
+            font-size: 1.1rem;
+            padding: 0.5rem;
+        }
+
+        .navbar-links {
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-right: 0;
+            gap: 0.4rem;
+        }
+
+        a {
+            padding: 0.25rem 0.5rem;
+            margin-right: 0;
+            font-size: 0.7rem;
+        }
+    }
 </style>

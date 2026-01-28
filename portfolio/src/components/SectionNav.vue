@@ -83,9 +83,9 @@ const goDown = () => {
     align-items: center;
     gap: 2rem;
     padding: 0.75rem 1.5rem;
-    margin-top: auto;
-    padding-top: 2rem;
-    margin-bottom: 3rem;
+    margin-top: 0;
+    /* padding-top: 2rem; */
+    /* margin-bottom: 3rem; */
 }
 
 .nav-arrow {
@@ -156,5 +156,43 @@ const goDown = () => {
     box-shadow:
         0 0 10px #6c2dffff,
         0 0 20px #6c2dffff;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .section-nav {
+        gap: 1.5rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .section-nav {
+        gap: 1rem;
+        padding: 0.4rem 0.5rem;
+    }
+
+    .nav-arrow {
+        padding: 0.3rem 0.5rem;
+        gap: 0.3rem;
+    }
+
+    .nav-label {
+        font-size: 0.7rem;
+    }
+
+    .arrow-icon {
+        font-size: 1rem;
+    }
+
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
 }
 </style>

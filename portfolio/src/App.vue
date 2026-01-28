@@ -2,7 +2,7 @@
   import Profile from './components/Profile.vue'
   import Projects from './components/Projects.vue'
   import Contact from './components/Contact.vue'
-  import SectionNav from './components/SectionNav.vue'
+  import GlobalNav from './components/GlobalNav.vue'
 </script>
 
 <template>
@@ -11,20 +11,18 @@
       <div class="section-content">
         <Profile />
       </div>
-      <SectionNav :currentIndex="0" />
     </section>
     <section id="projects" class="section">
       <div class="section-content">
         <Projects />
       </div>
-      <SectionNav :currentIndex="1" />
     </section>
     <section id="contact" class="section">
       <div class="section-content">
         <Contact />
       </div>
-      <SectionNav :currentIndex="2" />
     </section>
+    <GlobalNav />
   </main>
 </template>
 
@@ -34,19 +32,45 @@
   }
 
   .section {
-    min-height: 100vh;
-    padding: 2rem 1rem;
+    height: 100vh;
+    height: 100dvh;
+    padding: 2rem 1rem 5rem;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
   }
 
   .section-content {
-    flex-grow: 1;
+    flex: 1 1 0%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    /* Safari flex overflow fix */
+    -webkit-flex: 1 1 0%;
   }
 
   .section-content > * {
-    flex-grow: 1;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .section {
+      padding: 1.5rem 0.75rem 4rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .section {
+      height: 100dvh;
+      min-height: 100dvh;
+      padding: 1rem 0.5rem 3.5rem;
+    }
+
   }
 </style>
