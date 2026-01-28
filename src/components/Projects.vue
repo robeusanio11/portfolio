@@ -1,10 +1,38 @@
 <script setup>
-    import {ref} from 'vue';
+    import {ref, watch, onUnmounted} from 'vue';
 
     import projects from '../assets/projects.json'
 
     var displayProject = ref(projects[0]);
+    var fullscreenImage = ref(null);
 
+    function openFullscreen(image) {
+        fullscreenImage.value = image;
+    }
+
+    function closeFullscreen() {
+        fullscreenImage.value = null;
+    }
+
+    function handleKeydown(e) {
+        if (e.key === 'Escape') {
+            closeFullscreen();
+        }
+    }
+
+    // Add/remove keyboard listener when overlay opens/closes
+    watch(fullscreenImage, (newValue) => {
+        if (newValue) {
+            document.addEventListener('keydown', handleKeydown);
+        } else {
+            document.removeEventListener('keydown', handleKeydown);
+        }
+    });
+
+    // Cleanup on component unmount
+    onUnmounted(() => {
+        document.removeEventListener('keydown', handleKeydown);
+    });
 </script>
 
 <template>
@@ -55,23 +83,23 @@
 
                 <!-- Right: Preview -->
                 <div class="project-preview">
-                    <div class="image-container">
-                        <img class="project-image" :src="displayProject.image" alt="project media"/>
+                    <div class="image-container" v-for="(image, index) in displayProject.image" :key="index" @click="openFullscreen(image)">
+                        <img class="project-image" :src="image" alt="project media"/>
                     </div>
                     <div class="project-links">
                         <a
+                            v-if="displayProject.github"
                             class="project-link"
-                            :href="displayProject.github || '#'"
-                            target="_blank"
-                            :class="{disabled: !displayProject.github}">
+                            :href="displayProject.github"
+                            target="_blank">
                             <span class="link-icon">&#60;/&#62;</span>
                             GitHub
                         </a>
                         <a
+                            v-if="displayProject.demo"
                             class="project-link project-link-primary"
-                            :href="displayProject.demo || '#'"
-                            target="_blank"
-                            :class="{disabled: !displayProject.demo}">
+                            :href="displayProject.demo"
+                            target="_blank">
                             <span class="link-icon">&#9654;</span>
                             Live Demo
                         </a>
@@ -79,6 +107,11 @@
                 </div>
             </div>
         </Transition>
+
+        <!-- Fullscreen overlay -->
+        <div class="fullscreen-overlay" v-if="fullscreenImage" @click="closeFullscreen">
+            <img class="fullscreen-image" :src="fullscreenImage" alt="fullscreen view"/>
+        </div>
     </div>
 </template>
 
@@ -283,12 +316,19 @@
     }
 
     .image-container {
+        position: relative;
         width: 100%;
         max-width: 400px;
         border-radius: 20px;
         overflow: hidden;
-        border: 2px solid rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         transition: all 0.3s ease;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+
+    .image-container:last-of-type {
+        margin-bottom: 0;
     }
 
     .image-container:hover {
@@ -298,8 +338,30 @@
             0 0 40px rgba(108, 45, 255, 0.15);
     }
 
+    .image-container::after {
+        content: '⛶';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .image-container:hover::after {
+        opacity: 1;
+    }
+
     .project-image {
         width: 100%;
+        height: auto;
         display: block;
         transition: transform 0.3s ease;
     }
@@ -566,6 +628,28 @@
         .link-icon {
             font-size: 0.75rem;
         }
+    }
+
+    /* Fullscreen overlay */
+    .fullscreen-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    .fullscreen-image {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 8px;
     }
 
 </style>
