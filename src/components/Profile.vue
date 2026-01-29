@@ -68,10 +68,8 @@
         box-sizing: border-box;
     } */
     .profile-wrapper {
-        /* display: flex; */
         width: 100%;
-        height: calc(100vh - var(--navbar-height));
-        height: calc(100dvh - var(--navbar-height));
+        height: 100%;
         overflow: hidden;
     }
 
@@ -187,6 +185,8 @@
         overflow-y: auto;
         align-self: flex-start;
         max-height: 100%;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
 
     .profile-info::-webkit-scrollbar {
@@ -287,7 +287,7 @@
     @media (max-width: 768px) {
         .profile-container {
             flex-direction: column;
-            overflow-y: auto;
+            overflow: hidden;
         }
 
         .profile-cards {

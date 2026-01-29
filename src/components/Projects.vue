@@ -180,6 +180,8 @@
         max-height: calc(100% - 5rem);
         overflow-y: auto;
         overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
 
     .project-content::-webkit-scrollbar {
@@ -441,8 +443,6 @@
     /* Tablet */
     @media (max-width: 1024px) {
         .projects-section {
-            height: calc(100vh - var(--navbar-height));
-            height: calc(100dvh - var(--navbar-height));
             overflow: hidden;
         }
 
@@ -512,8 +512,6 @@
     @media (max-width: 768px) {
         .projects-section {
             padding: 0.5rem;
-            height: calc(100vh - var(--navbar-height));
-            height: calc(100dvh - var(--navbar-height));
             overflow: hidden;
         }
 

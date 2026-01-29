@@ -1,3 +1,7 @@
+html {
+    height: 100%;
+}
+
 body {
     -ms-overflow-style: none;
     margin: 0;
@@ -6,7 +10,9 @@ body {
     font-weight: 300;
     color: rgb(200, 200, 200);
     letter-spacing: 0.01em;
-
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
 }
 
 body::-webkit-scrollbar {
