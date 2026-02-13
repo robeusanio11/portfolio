@@ -42,7 +42,7 @@
         "technologies": ["Javascript", "PostgreSQL", "Sequelize", "NodeJS", "New Relic", "K6", "EC2", "Git"],
         "summary": "A back end for an online marketplace scaled to handle realistic amounts of data/user traffic",
         "description": "description",
-        "image": [""],
+        "image": [],
         "github": "",
         "demo": "",
         "bullets": ["Implemented foreign-key column indexing to increase the read speeds on high-volume requests.", "Used K6 to simulate 1000 virtual users continuously hitting an endpoint and was able to handle over 700 rps when querying through a table of 50 million records.", "Optimized the seeding process of the database by writing to a CSV and copying the data to the database."]

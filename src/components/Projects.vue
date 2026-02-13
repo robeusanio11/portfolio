@@ -82,7 +82,7 @@
                 </div>
 
                 <!-- Right: Preview -->
-                <div class="project-preview">
+                <div class="project-preview" v-if="displayProject.image && displayProject.image.length">
                     <div class="image-container" v-for="(image, index) in displayProject.image" :key="index" @click="openFullscreen(image)">
                         <img class="project-image" :src="image" alt="project media"/>
                     </div>
