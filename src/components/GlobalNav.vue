@@ -1,10 +1,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 
-const sections = ['profile', 'projects', 'contact'];
+const sections = ['projects', 'profile', 'contact'];
 const sectionLabels = {
-    profile: 'Profile',
     projects: 'Projects',
+    profile: 'Profile',
     contact: 'Contact'
 };
 
@@ -114,7 +114,6 @@ const nextSection = computed(() => {
     return null;
 });
 
-// In CTA mode on profile, we want to highlight "Projects"
 const showCta = computed(() => {
     return ctaMode.value && currentIndex.value === 0;
 });
@@ -125,7 +124,7 @@ const showCta = computed(() => {
         <!-- CTA Mode: Prominent call to action -->
         <div v-if="showCta" class="cta-container">
             <button class="cta-button" @click="scrollToSection(1)">
-                <span class="cta-text">View My Projects</span>
+                <span class="cta-text">View My Profile</span>
                 <span class="cta-arrow">&#9660;</span>
             </button>
         </div>

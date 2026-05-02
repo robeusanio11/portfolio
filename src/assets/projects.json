@@ -8,8 +8,8 @@
         "description": "description",
         "image": ["CALIPHSdemoHOME.PNG", "CALIPHSdemo.PNG", "TimeSliderDemo.PNG"],
         "github": "",
-        "demo": "",
-        "bullets": ["Dynamically filtered and displayed GeoJSON border data to map using React-Leaflet based on the user selected year", "Utilized modern React best practices to optimize performance in handling program state and introduced interactivity to the map with features such as an updating menu on hover and zooming to the bounds of what is clicked", "Created an express server that retrieves geographic data from a MySQL database, then builds and serves a GeoJSON file to the client for display"]
+        "demo": "https://caliphs.netlify.app/",
+        "bullets": ["Dynamically filtered and displayed GeoJSON border data to map using React-Leaflet based on the user selected year", "Utilized modern React best practices to optimize performance in handling program state and introduced interactivity to the map with features such as an updating menu when hovering over borders and toggleable map overlays.", "Used Supabase to enable a serverless architecture for retrieving/filtering GeoJSON and event data."]
     },
     {
         "name": "Lunar Semantic Segmentation",

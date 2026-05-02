@@ -37,6 +37,12 @@
 
 <template>
     <div class="projects-section">
+        <!-- Hero header -->
+        <div class="hero-header">
+            <h1 class="hero-name">Rob Eusanio</h1>
+            <span class="hero-tagline">Full-Stack Software Engineer building scalable, data-driven web applications.</span>
+        </div>
+
         <!-- Tabs at top -->
         <div class="project-tabs">
             <div
@@ -51,7 +57,7 @@
 
         <!-- Content area -->
         <Transition name="project-info" mode="out-in">
-            <div class="project-content" :key="displayProject.name">
+            <div class="project-content" :key="displayProject.name" :class="{ 'no-preview': !displayProject.image || !displayProject.image.length }">
                 <!-- Left: Details -->
                 <div class="project-details">
                     <div class="project-header">
@@ -128,6 +134,36 @@
         height: 100%;
     }
 
+    /* Hero header */
+    .hero-header {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        padding: 0 1rem 0;
+        margin-bottom: 0.5rem;
+        flex-shrink: 0;
+    }
+
+    .hero-name {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 200;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: white;
+        text-shadow:
+            0 0 10px #9263ffff,
+            0 0 20px #6c2dffff,
+            0 0 40px rgba(108, 45, 255, 0.5);
+    }
+
+    .hero-tagline {
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: rgb(180, 180, 180);
+        letter-spacing: 0.05em;
+    }
+
     /* Tabs */
     .project-tabs {
         display: flex;
@@ -177,7 +213,7 @@
         box-sizing: border-box;
         width: calc(70% - 2rem);
         max-width: calc(100% - 2rem);
-        max-height: calc(100% - 5rem);
+        max-height: calc(100% - 11rem);
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
@@ -201,6 +237,17 @@
 
     .project-content::-webkit-scrollbar-thumb:hover {
         background: rgba(146, 99, 255, 0.7);
+    }
+
+    .project-content.no-preview {
+        justify-content: center;
+        width: fit-content;
+        max-width: calc(100% - 2rem);
+    }
+
+    .project-content.no-preview .project-details {
+        width: 600px;
+        max-width: 100%;
     }
 
     /* Left: Details */
@@ -375,7 +422,8 @@
     .project-links {
         display: flex;
         gap: 1rem;
-        margin-top: 1.5rem;
+        height: fit-content;
+        align-items: center;
     }
 
     .project-link {
@@ -541,7 +589,7 @@
         .project-details {
             width: 100%;
             padding: 0.5rem;
-            order: 2;
+            order: 1;
         }
 
         .project-header {
@@ -604,7 +652,7 @@
         .project-preview {
             width: 100%;
             padding: 0.5rem;
-            order: 1;
+            order: 2;
             margin-bottom: 1rem;
         }
 

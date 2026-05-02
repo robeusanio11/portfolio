@@ -7,14 +7,14 @@
 
 <template>
   <main>
-    <section id="profile" class="section">
-      <div class="section-content">
-        <Profile />
-      </div>
-    </section>
     <section id="projects" class="section">
       <div class="section-content">
         <Projects />
+      </div>
+    </section>
+    <section id="profile" class="section">
+      <div class="section-content">
+        <Profile />
       </div>
     </section>
     <section id="contact" class="section">
