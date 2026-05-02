@@ -9,10 +9,7 @@ const sectionLabels = {
 };
 
 const currentIndex = ref(0);
-const ctaMode = ref(true);
-const hasScrolled = ref(false);
 
-// Track which section is most visible
 const sectionVisibility = ref({});
 let observers = [];
 
@@ -54,22 +51,12 @@ const setupIntersectionObserver = () => {
     });
 };
 
-// Detect first scroll to exit CTA mode
-const handleScroll = () => {
-    if (!hasScrolled.value && window.scrollY > 50) {
-        hasScrolled.value = true;
-        ctaMode.value = false;
-    }
-};
-
 onMounted(() => {
     setupIntersectionObserver();
-    window.addEventListener('scroll', handleScroll, { passive: true });
 });
 
 onUnmounted(() => {
     observers.forEach(observer => observer.disconnect());
-    window.removeEventListener('scroll', handleScroll);
 });
 
 const scrollToSection = (index) => {
@@ -77,10 +64,6 @@ const scrollToSection = (index) => {
 
     const section = document.getElementById(sections[index]);
     if (section) {
-        // Exit CTA mode on any navigation click
-        ctaMode.value = false;
-        hasScrolled.value = true;
-
         section.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
@@ -113,24 +96,11 @@ const nextSection = computed(() => {
     }
     return null;
 });
-
-const showCta = computed(() => {
-    return ctaMode.value && currentIndex.value === 0;
-});
 </script>
 
 <template>
-    <nav class="global-nav" :class="{ 'cta-mode': showCta }">
-        <!-- CTA Mode: Prominent call to action -->
-        <div v-if="showCta" class="cta-container">
-            <button class="cta-button" @click="scrollToSection(1)">
-                <span class="cta-text">View My Profile</span>
-                <span class="cta-arrow">&#9660;</span>
-            </button>
-        </div>
-
-        <!-- Normal Mode: Standard navigation -->
-        <div v-else class="nav-container">
+    <nav class="global-nav">
+        <div class="nav-container">
             <button
                 class="nav-arrow up"
                 @click="goUp"
@@ -178,70 +148,7 @@ const showCta = computed(() => {
     transition: all 0.4s ease;
 }
 
-/* CTA Mode Styles */
-.cta-container {
-    display: flex;
-    justify-content: center;
-}
-
-.cta-button {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: rgba(146, 99, 255, 0.15);
-    border: 1px solid rgba(146, 99, 255, 0.4);
-    color: #fff;
-    cursor: pointer;
-    padding: 0.875rem 1.75rem;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    animation: pulse-glow 2s ease-in-out infinite;
-}
-
-.cta-button:hover {
-    background: rgba(146, 99, 255, 0.25);
-    border-color: rgba(146, 99, 255, 0.7);
-    transform: translateY(-2px);
-    box-shadow:
-        0 0 20px rgba(108, 45, 255, 0.4),
-        0 0 40px rgba(108, 45, 255, 0.2);
-}
-
-.cta-text {
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.cta-arrow {
-    font-size: 1rem;
-    animation: bounce 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-    0%, 100% {
-        box-shadow:
-            0 0 10px rgba(108, 45, 255, 0.3),
-            0 0 20px rgba(108, 45, 255, 0.1);
-    }
-    50% {
-        box-shadow:
-            0 0 20px rgba(108, 45, 255, 0.5),
-            0 0 40px rgba(108, 45, 255, 0.3);
-    }
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(4px);
-    }
-}
-
-/* Normal Navigation Styles */
+/* Navigation Styles */
 .nav-container {
     display: flex;
     justify-content: center;
@@ -339,13 +246,6 @@ const showCta = computed(() => {
         font-size: 0.8rem;
     }
 
-    .cta-button {
-        padding: 0.75rem 1.5rem;
-    }
-
-    .cta-text {
-        font-size: 0.9rem;
-    }
 }
 
 /* Mobile */
@@ -379,17 +279,5 @@ const showCta = computed(() => {
         height: 6px;
     }
 
-    .cta-button {
-        padding: 0.625rem 1.25rem;
-        gap: 0.5rem;
-    }
-
-    .cta-text {
-        font-size: 0.8rem;
-    }
-
-    .cta-arrow {
-        font-size: 0.875rem;
-    }
 }
 </style>
