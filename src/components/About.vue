@@ -26,7 +26,7 @@ const scrollToProjects = () => {
 
         <div class="button-group">
             <button class="projects-button" @click="scrollToProjects">See My Projects</button>
-            <a class="resume-button" href="/Rob_Eusanio_Resume.pdf" download="Rob-Eusanio-Resume">Download Resume</a>
+            <a class="resume-button" href="/Rob-Eusanio-Resume-Engineer.pdf" download="Rob-Eusanio-Resume-Engineer">Download Resume</a>
         </div>
     </div>
 

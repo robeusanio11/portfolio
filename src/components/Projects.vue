@@ -40,7 +40,7 @@
         <!-- Hero header -->
         <div class="hero-header">
             <h1 class="hero-name">Rob Eusanio</h1>
-            <span class="hero-tagline">Full-Stack Software Engineer building scalable, data-driven web applications.</span>
+            <span class="hero-tagline">Full-Stack Software Engineer with experience building scalable, data-driven web applications.</span>
         </div>
 
         <!-- Tabs at top -->

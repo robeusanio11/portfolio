@@ -33,7 +33,7 @@
                 <a class="github-button" href="https://github.com/robeusanio11">
                     <img src="/github-mark-white.png" title="Github" alt="Github Icon" />
                 </a>
-                <a class="resume-button" href="/Rob_Eusanio_Resume.pdf">
+                <a class="resume-button" href="/Rob-Eusanio-Resume-Engineer.pdf">
                     <img src="/icons8-resume-100-white.png" title="Resume" alt="Resume Icon" />
                 </a>
             </div>
